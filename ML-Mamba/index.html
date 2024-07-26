@@ -1,12 +1,372 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="description"
+          content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+    <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ML-Mamba</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-PYVRSFMDRL');
+    </script>
+
+    <!--  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">-->
+
+    <!--  <link rel="stylesheet" href="./static/css/bulma.min.css">-->
+    <!--  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">-->
+    <!--  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">-->
+    <!--  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">-->
+    <!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">-->
+    <!--  <link rel="stylesheet" href="./static/css/index.css">-->
+    <!--  <link rel="icon" href="./static/images/favicon.svg">-->
+
+    <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+    <!--  <script defer src="./static/js/fontawesome.all.min.js"></script>-->
+    <!--  <script src="./static/js/bulma-carousel.min.js"></script>-->
+    <!--  <script src="./static/js/bulma-slider.min.js"></script>-->
+    <!--  <script src="./static/js/index.js"></script>-->
+    <style>
+        body {
+            font-family: 'Noto Sans', sans-serif;
+        }
+
+        .title {
+            color: #363636;
+            font-weight: 600;
+            line-height: 1.125;
+        }
+
+        .page_content {
+            color: #4a4a4a;
+            font-size: 1em;
+            font-weight: 400;
+            line-height: 1.5;
+            font-family: 'Noto Sans', sans-serif
+        }
+
+        .head_title {
+            font-size: 3rem;
+        }
+
+        .author-block {
+            font-size: 1.25rem !important
+        }
+
+    </style>
 </head>
+
 <body>
-    <h1>Welcome to ML-Mamba Page</h1>
-    <p>This is a subpage of wenjunhuang94.github.io</p>
+
+<div style="width: 100% ;display: flex;justify-content: center">
+
+
+    <div style="width: 80%;">
+
+        <section class="hero">
+            <div class="hero-body">
+                <div class="container is-max-desktop">
+                    <div class="columns is-centered">
+                        <div class="column has-text-centered" style="display: flex;text-align: center">
+                            <img id="painting_icon" width="130" height="130" src="pic/icon.png">
+                            <!-- 标题 -->
+                            <h1 class="head_title title is-1 publication-title" >
+                                ML-Mamba: Efficient Multi-Modal Large Language Model Utilizing Mamba-2</h1>
+                        </div>
+
+                        <!-- 作者 -->
+                        <div style="display: flex;justify-content: center">
+                            <span  class="author-block">WenJun Huang</a><sup>1</sup>, </span>
+                            <span class="author-block">Jianguo Hu</a><sup>1</sup></span>
+                        </div>
+
+                        <div style="display: flex;justify-content: center">
+                          <span class="author-block"><sup>1</sup>Sun Yat-sen University</span>
+                        </div>
+
+                        <div style="display: flex;justify-content: center;margin-top: 20px;margin-bottom: 20px">
+                            <a style="display: block; width: 70px;background: #363636;height: 40px;color: #fff;border-radius: 25px;text-align: center;line-height: 40px">arrXiv</a>
+                            &nbsp;&nbsp;&nbsp;
+                            <a href="https://github.com/WenjunHuang94/ML-Mamba" style="display: block; width: 70px;background: #363636;height: 40px;color: #fff;border-radius: 25px;text-align: center;line-height: 40px">Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <!-- Abstract. -->
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-four-fifths">
+
+                        <div style="display: flex;justify-content: center">
+                            <h2 style="color: #363636;font-weight: 600;line-height: 1.125" class="title is-3">
+                                Abstract</h2>
+
+                        </div>
+
+                        <div class="content has-text-justified">
+                            <p class="page_content">
+                                Multimodal Large Language Models (MLLMs) have attracted much attention due to their multifunctionality. However, traditional Transformer architectures incur significant overhead due to their secondary computational complexity. To address this issue, we introduced ML-Mamba, a multimodal language model that utilizes the latest and efficient Mamba-2 model for inference. Mamba-2 is known for its linear extension and fast processing of long sequences. We replaced the Transformer based backbone with a pre trained Mamba-2 model and explored methods for integrating 2D visual selective scanning mechanisms into multimodal learning. We also tried various visual encoders and Mamba-2 model variants.                            </p>
+                            <p class="page_content">
+                                Our extensive experiments conducted in various multimodal benchmark tests have demonstrated the competitive performance of ML-Mamba and highlighted the potential of state space models in multimodal tasks. The experimental results show that: (1) ML-Mamba achieves performance comparable to state-of-the-art methods such as TinyLaVA and MobileVLM v2 through its linear sequential modeling, while also having faster inference speed; (2) ML-Mamba performs well in visual hallucinations and spatial relationship judgment in closed set benchmark tests; (3) ML-Mamba achieved performance comparable to LLaVA while reducing the number of parameters by 40%.(4) Compared to the multimodal model using the original Mamba model, the Mamba-2 based large-scale multimodal language model has stronger inference performance and effectiveness. We will open source ML-Mamba to promote research on computational complexity in MLLMs.
+                            </p>
+                            <p>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="section">
+            <!-- Results. -->
+            <div class="columns is-centered has-text-centered">
+                <div style="display: flex;justify-content: center">
+                    <h2 class="title is-3"> ML-Mamba</h2>
+                </div>
+            </div>
+            <!-- </div> https://cdn-icons-png.flaticon.com/512/5379/5379860.png -->
+            <!--/ Results. -->
+            <div class="container is-max-desktop">
+
+                <div class="columns is-centered">
+                    <div class="column is-full-width">
+                        <div class="content has-text-justified">
+                            <p class="page_content">
+                                The architecture of Mamba consists of four main components: a pre-trained visual encoder, a randomly initialized multi-modal connector called the Mamba-2 Scan Connector (MSC), and a pre-trained large language model (Mamba-2 LLM).
+                                As illustrated below, with an image as input, visual features are first extracted through the visual encoder.
+                                The extracted sequence of visual features is then fed into the multi-modal connector (MSC),
+                                whose output is mapped to the LLM using a multi-layer perceptron (MLP) projector.
+                                The output vector from the visual projector is then combined with tokenized text queries and
+                                input into the Mamba-2 LLM. Finally, the Mamba-2 LLM generates the corresponding response.
+
+
+                            </p>
+                        </div>
+                        <centering>
+                            <div style="text-align: center;">
+                                <img id="overall" width="50%" height="50%" src="pic/overall.png">
+                            </div>
+
+                        </centering>
+                    </div>
+                </div>
+
+        </section>
+
+
+        <section class="section">
+            <!-- Results. -->
+            <div class="columns is-centered has-text-centered">
+                <div style="display: flex;justify-content: center">
+
+                    <h2 class="title is-3"> MultiModal Connector</h2>
+                </div>
+            </div>
+            <div class="container is-max-desktop">
+
+                <div class="columns is-centered">
+                    <div class="column is-full-width">
+                        <div class="content has-text-justified">
+                            <p class="page_content">
+                                Multimodal connectors act between visual features and language models to ensure seamless integration of visual and linguistic information. In this study, we explored a novel multimodal connector
+                                called Mamba-2 Scan Connector (MSC) architecture aimed at addressing the challenge of unclear
+                                causal relationships in computer vision.
+
+                                The core of the MSC module is a combination of the two-dimensional Mamba-2 visual
+                                selective scanning (MVSS) module and the SwiGLU module. We attempted to integrate
+                                this module into the multimodal connector of the ML-Mamba multimodal learning framework.
+
+                                Specifically, we studied three variants of multimodal connectors:
+                            <ul type="1">
+                                <li><b>MLP</b>:
+                                    <span style="font-size: 95%;">
+                                    a three-layer Multi-Layer Perceptron (MLP) that aligns the features of vision and text.
+                                    </span>
+                                </li>
+                                <li><b>MSC-MLP (Basic)</b>: <span style="font-size: 95%;">
+It combines the multimodal connector called the Mamba-2 Scan Connector (MSC) module, which does not include the SwiGLU module and is intended to enhance the processing capability of two-dimensional non-causal visual information. Subsequently, the MLP aligns the features of vision and text                                </li>
+                                <li><b>MSC-MLP (Advanced)</b>: <span
+                                        style="font-size: 95%;">This variant combines the MSC module and MLP, where the MSC module includes the SwiGLU module.</span>
+                            </ul>
+                            </p>
+                        </div>
+                        <centering>
+                            <div style="text-align: center;">
+                                <img id="msc" width="50%" height="50%" src="pic/msc.png">
+                            </div>
+
+
+                        </centering>
+                    </div>
+                </div>
+
+
+        </section>
+
+
+        <section class="section">
+            <!-- Results. -->
+            <div class="columns is-centered has-text-centered">
+                <div style="display: flex;justify-content: center">
+
+                    <h2 class="title is-3"> 2D scanning mechanisms</h2>
+                </div>
+            </div>
+            <!-- </div> https://cdn-icons-png.flaticon.com/512/5379/5379860.png -->
+            <!--/ Results. -->
+            <div class="container is-max-desktop">
+
+                <div class="columns is-centered">
+                    <div class="column is-full-width">
+                        <div class="content has-text-justified">
+                            <p class="page_content">
+                                The MSC module bridges the gap between 1D sequential processing capability (typical of SSM)
+                                and 2D non causal visual information by introducing two 2D scanning mechanisms. These scanning
+                                mechanisms include:
+                            <ul type="1">
+                                <li><b>Bidirectional-Scan Mechanism (BSM)</b>:
+                                    <span style="font-size: 95%;">
+                                        Scanning the complementary features of the image in both forward and backward directions to capture a broader context without increasing computational complexity
+                                    </span>
+                                </li>
+                                <li><b>Cross-Scan Mechanism (CSM)</b>:
+                                    <span style="font-size: 95%;">
+                                        unfolds image patch features into sequences along rows and columns and scans them in four directions (diagonally across the image).
+                                    </span>
+                                </li>
+                            </ul>
+                            </p>
+                        </div>
+
+                        <centering>
+                            <div style="text-align: center;">
+                                <img id="2Dscan" width="50%" height="50%" src="pic/2Dscan.png">
+                            </div>
+                        </centering>
+
+                        <div class="content has-text-justified">
+                            <p class="page_content">
+                                Mamba-2 Scan Connector (BSM, With SwiGLU) and Mamba-2 Scan Connector (CSM, With SwiGLU):
+                            </p>
+                        </div>
+
+                        <centering>
+                            <div style="text-align: center;">
+                                <img id="2Dscan" width="50%" height="50%" src="pic/Mamba-2.png">
+                            </div>
+                        </centering>
+
+                    </div>
+                </div>
+
+
+        </section>
+
+
+        <section class="section">
+            <!-- Results. -->
+            <div class="columns is-centered has-text-centered">
+                <div style="display: flex;justify-content: center">
+                    <h2 class="title is-3"> Inference Speed And Comparison with Baselines</h2>
+                </div>
+            </div>
+            <!-- </div> https://cdn-icons-png.flaticon.com/512/5379/5379860.png -->
+            <!--/ Results. -->
+            <div class="container is-max-desktop">
+
+                <div class="columns is-centered">
+                    <div class="column is-full-width">
+                        <div class="content has-text-justified">
+                            <p class="page_content">
+                            ML-Mamba performs 3 to 4 times faster than MobileVLM v2 3B and TinyLLaVA 3B on a single NVIDIA
+                                A100 80G GPU. Additionally, ML-Mamba achieves comparable performance to LLaVA v1.5 7B
+                                while utilizing only about 40% of the number of parameters.
+                            </p>
+                        </div>
+                        <centering>
+                            <div style="text-align: center;">
+                                <img id="overall" width="50%" height="50%" src="pic/sota.png">
+                            </div>
+
+                        </centering>
+                    </div>
+                </div>
+
+        </section>
+
+        <section class="section">
+            <!-- Results. -->
+            <div class="columns is-centered has-text-centered">
+                <div style="display: flex;justify-content: center">
+
+                    <h2 class="title is-3">Examples of ML-Mamba chat</h2>
+                </div>
+            </div>
+            <div class="container is-max-desktop">
+
+                <div class="columns is-centered">
+                    <div class="column is-full-width">
+                        <div class="content has-text-justified">
+                            <p>
+                                <!-- sample -->
+                        </div>
+                        <centering>
+                            <div style="text-align: center;">
+                                <img id="chat" width="40%" height="45%" src="pic/chat.png">
+                            </div>
+                    </div>
+
+                </div>
+
+        </section>
+
+        <section class="section" id="BibTeX">
+            <h2 class="title">BibTeX</h2>
+
+            <div class="container is-max-desktop content" style="background-color:#f5f5f5;padding: 20px ">
+                <pre><code>
+
+                </code></pre>
+            </div>
+        </section>
+
+        <section class="section" id="Acknowledgement">
+            <div class="container is-max-desktop content">
+                <h2 class="title">Acknowledgement</h2>
+                <p class="page_content">
+
+                </p>
+
+            </div>
+        </section>
+
+
+
+
+    </div>
+</div>
+
+
+
 </body>
+
 </html>
